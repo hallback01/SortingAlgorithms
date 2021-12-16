@@ -301,8 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff60391ed07329eff8bcba5defcbbfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 3.6
   speed: 3.1415927
   origin: {x: 0, y: 0}
   start_ball_amount: 5000
+  ball_divider: 10
   ball_prefab: {fileID: 2664966118219338414, guid: 358863b0880f8e52bb139a001e7801c4, type: 3}
