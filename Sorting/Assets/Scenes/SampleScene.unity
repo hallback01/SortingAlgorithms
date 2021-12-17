@@ -239,7 +239,7 @@ MonoBehaviour:
   radius: 3
   speed: 3.1415927
   origin: {x: 0, y: 0}
-  start_ball_amount: 100
+  start_ball_amount: 1337
   ball_divider: 10
   ball_prefab: {fileID: 2664966118219338414, guid: 82b1157c2748e45d88a56aa4c1bc4d3b, type: 3}
 --- !u!212 &1333530549
