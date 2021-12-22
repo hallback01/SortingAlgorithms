@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour
 {
 
-    public Visualizer visualizer;
+    public SortingController sorting_controller;
 
     SpriteRenderer sprite_renderer;
     Color start_color;
@@ -21,10 +21,10 @@ public class BallBehaviour : MonoBehaviour
     public void update_ball()
     {
         float random_angle = Random.Range(0.0f, 360.0f);
-        float random_range = Random.Range(0.0f, visualizer.radius);
-        transform.position = new Vector2(Mathf.Cos(random_angle), Mathf.Sin(random_angle)) * random_range;
+        float random_range = Random.Range(0.0f, sorting_controller.radius);
+        transform.position = sorting_controller.origin + new Vector2(Mathf.Cos(random_angle), Mathf.Sin(random_angle)) * random_range;
 
-        distance = Vector2.Distance(visualizer.transform.position, transform.position);
+        distance = Vector2.Distance(sorting_controller.transform.position, transform.position);
 
         change_back_color();
     }

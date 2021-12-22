@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 1333530549}
   - component: {fileID: 1333530548}
   m_Layer: 0
-  m_Name: Visualizer
+  m_Name: SortingController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,11 +236,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da07dbef74063cc95aefa17dadc370b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
   radius: 3
-  speed: 3.1415927
+  speed: 3.14
   origin: {x: 0, y: 0}
-  start_ball_amount: 1337
-  ball_divider: 10
+  sorting_implementation: 0
+  start_ball_amount: 5000
+  ball_divider: 0.1
   ball_prefab: {fileID: 2664966118219338414, guid: 82b1157c2748e45d88a56aa4c1bc4d3b, type: 3}
 --- !u!212 &1333530549
 SpriteRenderer:
