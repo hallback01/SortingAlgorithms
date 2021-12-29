@@ -11,7 +11,6 @@ public class SortingController : MonoBehaviour
         Experiment
     }
     public Mode mode;
-    TimeMeasurment time_measurement;
     public GameObject ball_prefab;
     public StateInformation state_information;
     public StateSimulation state_simulation;
@@ -26,8 +25,6 @@ public class SortingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time_measurement = new TimeMeasurment();
-
         if(mode == Mode.Simulation) {
             state_simulation.start();
         } else {
@@ -43,13 +40,5 @@ public class SortingController : MonoBehaviour
         } else {
             state_experiment.update();
         }
-        
-    }
-
-    void OnDestroy() {
-        //string text = "Sorting " + start_ball_amount + " balls took on average: " + (1000000 * time_measurement.get_average()).ToString() + "μs";
-
-        //Debug.Log(text);
-        //File.WriteAllText("/home/rasmus/Desktop/Time.txt", text + "\n");
     }
 }

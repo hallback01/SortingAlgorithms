@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da07dbef74063cc95aefa17dadc370b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
   ball_prefab: {fileID: 2664966118219338414, guid: 82b1157c2748e45d88a56aa4c1bc4d3b, type: 3}
   state_simulation:
     radius: 3
@@ -244,12 +244,12 @@ MonoBehaviour:
     origin: {x: 0, y: 0}
     sorting_implementation: 1
     start_ball_amount: 2500
-    ball_divider: 0.1
+    ball_divider: 0.001
   state_experiment:
-    ticks_per_samplesize: 0
-    starting_sample_size: 0
-    sample_size_delta: 0
-    stop_sample_size: 0
+    ticks_per_samplesize: 60
+    starting_sample_size: 50
+    sample_size_delta: 50
+    stop_sample_size: 2000
 --- !u!212 &1333530549
 SpriteRenderer:
   m_ObjectHideFlags: 0

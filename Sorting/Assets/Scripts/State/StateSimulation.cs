@@ -6,18 +6,12 @@ using UnityEngine;
 [Serializable]
 public class StateSimulation
 {
-    public enum SortingImplementation {
-        SelectionSort,
-        HeapSort,
-        QuickSort
-    }
     public StateInformation state_information;
-
     
     public float radius;
     public float speed;
     public Vector2 origin;
-    public SortingImplementation sorting_implementation;
+    public StateInformation.SortingImplementation sorting_implementation;
     public int start_ball_amount;
     [Range(0.001f, 1f)]
     public float ball_divider;
@@ -44,15 +38,15 @@ public class StateSimulation
 
     void sort_objects() {
         switch(sorting_implementation) {
-            case SortingImplementation.SelectionSort: {
+            case StateInformation.SortingImplementation.SelectionSort: {
                 state_information.sort_selection_sort();
                 break;
             }
-            case SortingImplementation.HeapSort: {
+            case StateInformation.SortingImplementation.HeapSort: {
                 state_information.sort_heap_sort();
                 break;
             }
-            case SortingImplementation.QuickSort: {
+            case StateInformation.SortingImplementation.QuickSort: {
                 state_information.sort_quick_sort();
                 break;
             }

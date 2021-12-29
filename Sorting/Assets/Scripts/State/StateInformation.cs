@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class StateInformation
 {
+    public enum SortingImplementation {
+        SelectionSort,
+        HeapSort,
+        QuickSort
+    }
     public List<BallBehaviour> balls;
     public GameObject ball_prefab;
     public SortingController sorting_controller;
