@@ -18,11 +18,11 @@ public class BallBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void update_ball()
+    public void update_ball(Vector2 origin, float radius)
     {
         float random_angle = Random.Range(0.0f, 360.0f);
-        float random_range = Random.Range(0.0f, sorting_controller.radius);
-        transform.position = sorting_controller.origin + new Vector2(Mathf.Cos(random_angle), Mathf.Sin(random_angle)) * random_range;
+        float random_range = Random.Range(0.0f, radius);
+        transform.position = origin + new Vector2(Mathf.Cos(random_angle), Mathf.Sin(random_angle)) * random_range;
 
         distance = Vector2.Distance(sorting_controller.transform.position, transform.position);
 

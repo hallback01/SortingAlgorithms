@@ -237,13 +237,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  radius: 3
-  speed: 3.14
-  origin: {x: 0, y: 0}
-  sorting_implementation: 1
-  start_ball_amount: 5000
-  ball_divider: 0.1
   ball_prefab: {fileID: 2664966118219338414, guid: 82b1157c2748e45d88a56aa4c1bc4d3b, type: 3}
+  state_simulation:
+    radius: 3
+    speed: 3.14
+    origin: {x: 0, y: 0}
+    sorting_implementation: 1
+    start_ball_amount: 2500
+    ball_divider: 0.1
+  state_experiment:
+    ticks_per_samplesize: 0
+    starting_sample_size: 0
+    sample_size_delta: 0
+    stop_sample_size: 0
 --- !u!212 &1333530549
 SpriteRenderer:
   m_ObjectHideFlags: 0
