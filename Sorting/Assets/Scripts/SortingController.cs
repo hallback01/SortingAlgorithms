@@ -11,8 +11,9 @@ public class SortingController : MonoBehaviour
         Experiment
     }
     public enum SortingImplementation {
-        BuiltIn,
-        CountingSort
+        SelectionSort,
+        HeapSort,
+        QuickSort
     }
 
     public Mode mode;
@@ -72,17 +73,18 @@ public class SortingController : MonoBehaviour
         float now = Time.realtimeSinceStartup;
 
         switch(sorting_implementation) {
-
-            case SortingImplementation.BuiltIn: {
-                sort_builtin();
+            case SortingImplementation.SelectionSort: {
+                sort_selection_sort();
                 break;
             }
-
-            case SortingImplementation.CountingSort: {
-                sort_counting_sort();
+            case SortingImplementation.HeapSort: {
+                sort_heap_sort();
                 break;
             }
-
+            case SortingImplementation.QuickSort: {
+                sort_quick_sort();
+                break;
+            }
         }
         
         time_measurement.add_time(Time.realtimeSinceStartup - now);
@@ -92,8 +94,57 @@ public class SortingController : MonoBehaviour
         balls.Sort((b1, b2) => b1.distance_from_circle().CompareTo(b2.distance_from_circle()));
     }
 
-    void sort_counting_sort() {
-        sort_builtin();
+    void sort_selection_sort() {
+        for(int i = 0; i < balls.Count-1; i++) {
+            int lowest = i;
+            for(int j = i+1; j < balls.Count; j++) {
+                if(balls[lowest].distance_from_circle() > balls[j].distance_from_circle()) {
+                    lowest = j;
+                }
+            }
+            if(lowest != i) {
+                BallBehaviour a = balls[i];
+                BallBehaviour b = balls[lowest];
+                balls[lowest] = a;
+                balls[i] = b;
+            }
+        }
+    }
+
+    void sort_heap_sort() {
+        for(int i = balls.Count/2 - 1; i >= 0; i--) {
+            heapify(balls.Count, i);
+        }
+        for(int i = balls.Count - 1; i >= 0; i--) {
+            BallBehaviour a = balls[i];
+            BallBehaviour b = balls[0];
+            balls[0] = a;
+            balls[i] = b;
+            heapify(i, 0);
+        }
+    }
+
+    void heapify(int n, int i) {
+        int largest = i;
+        int left = 2*i + 1;
+        int right = 2*i + 2;
+        if(left < n && balls[left].distance_from_circle() > balls[largest].distance_from_circle()) {
+            largest = left;
+        }
+        if(right < n && balls[right].distance_from_circle() > balls[largest].distance_from_circle()) {
+            largest = right;
+        }
+        if(largest != i) {
+            BallBehaviour a = balls[i];
+            BallBehaviour b = balls[largest];
+            balls[i] = b;
+            balls[largest] = a;
+            heapify(n, largest);
+        }
+    }
+
+    void sort_quick_sort() {
+
     }
 
     void update_balls() {
