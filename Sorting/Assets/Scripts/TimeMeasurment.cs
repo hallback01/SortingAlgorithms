@@ -34,7 +34,7 @@ public class TimeMeasurment
         string csv_data = "SortingImplementation; Ball Amount; Time(μs)\n";
 
         foreach(KeyValuePair<(StateInformation.SortingImplementation, int), (float, int)> entry in times) {
-            int time = Mathf.Round((entry.Value.Item1 / (float)entry.Value.Item2) * 1000000.0f); //convert from seconds to microseonds because for some reason libreoffice doesn't accept floating points so I need to enlarge the numbers into readable integers..
+            int time = (int)Mathf.Round((entry.Value.Item1 / (float)entry.Value.Item2) * 1000000.0f); //convert from seconds to microseonds because for some reason libreoffice doesn't accept floating points so I need to enlarge the numbers into readable integers..
             int balls = entry.Key.Item2;
             StateInformation.SortingImplementation sorter = entry.Key.Item1;
 
