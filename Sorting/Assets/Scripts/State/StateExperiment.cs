@@ -11,6 +11,7 @@ public class StateExperiment
     public int starting_sample_size = 100;
     public int sample_size_delta = 50;
     public int stop_sample_size = 200;
+    public string csv_save_location = "/home/rasmus/Desktop/experiment-sorting.csv";
     float angle = 0;
     int ticks = 0;
     int current_sample_size = 0;
@@ -63,7 +64,7 @@ public class StateExperiment
                         case StateInformation.SortingImplementation.QuickSort: {
                             done = true;
                             Debug.Log("Done! Saving results to file.");
-                            time_measurment.print();
+                            time_measurment.save(csv_save_location);
                             break;
                         }
                     }

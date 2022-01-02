@@ -247,9 +247,10 @@ MonoBehaviour:
     ball_divider: 0.001
   state_experiment:
     ticks_per_samplesize: 60
-    starting_sample_size: 50
-    sample_size_delta: 50
+    starting_sample_size: 1000
+    sample_size_delta: 100
     stop_sample_size: 2000
+    csv_save_location: /home/rasmus/Desktop/experiment-sorting.csv
 --- !u!212 &1333530549
 SpriteRenderer:
   m_ObjectHideFlags: 0

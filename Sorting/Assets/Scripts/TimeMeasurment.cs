@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class TimeMeasurment
 {
@@ -26,6 +27,24 @@ public class TimeMeasurment
             int balls = entry.Key.Item2;
             StateInformation.SortingImplementation sorter = entry.Key.Item1;
             Debug.Log("Sorting with " + sorter + " with " + balls + " balls took " + time + " micro seconds");
+        }
+    }
+
+    public void save(string location) {
+        string csv_data = "SortingImplementation; Ball Amount; Time(μs)\n";
+
+        foreach(KeyValuePair<(StateInformation.SortingImplementation, int), (float, int)> entry in times) {
+            int time = Mathf.Round((entry.Value.Item1 / (float)entry.Value.Item2) * 1000000.0f); //convert from seconds to microseonds because for some reason libreoffice doesn't accept floating points so I need to enlarge the numbers into readable integers..
+            int balls = entry.Key.Item2;
+            StateInformation.SortingImplementation sorter = entry.Key.Item1;
+
+            csv_data += sorter + ";" + balls + ";" + time + "\n";
+        }
+
+        try {
+            File.WriteAllText(location, csv_data);
+        } catch {
+            Debug.Log("Error! Could not write data to '" + location + "'.");
         }
     }
 }
