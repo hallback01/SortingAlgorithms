@@ -46,6 +46,10 @@ public class StateSimulation
                 state_information.sort_map_sort();
                 break;
             }
+            case StateInformation.SortingImplementation.MapSortLinq: {
+                state_information.sort_map_sort_linq();
+                break;
+            }
             case StateInformation.SortingImplementation.HeapSort: {
                 state_information.sort_heap_sort();
                 break;

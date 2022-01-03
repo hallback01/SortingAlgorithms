@@ -8,6 +8,7 @@ public class StateInformation
     public enum SortingImplementation {
         SelectionSort,
         MapSort,
+        MapSortLinq,
         HeapSort,
         QuickSort
     }
@@ -83,6 +84,17 @@ public class StateInformation
             balls[i] = first.Value;
             remaining.Remove(first.Key);
         }
+    }
+
+    public void sort_map_sort_linq() {
+        SortedDictionary<(float, int), BallBehaviour> remaining = new SortedDictionary<(float, int), BallBehaviour>();
+        int index = 0;
+        foreach(BallBehaviour value in balls) {
+            remaining.Add((value.distance_from_circle(), index), value);
+            index++;
+        }
+
+        balls = remaining.Select(pair => pair.Value).ToList();
     }
 
     public void sort_quick_sort() {

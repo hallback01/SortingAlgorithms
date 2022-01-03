@@ -56,6 +56,14 @@ public class StateExperiment
                         }
 
                         case StateInformation.SortingImplementation.MapSort: {
+                            sorting_implementation = StateInformation.SortingImplementation.MapSortLinq;
+                            current_sample_size = starting_sample_size;
+                            Debug.Log("Started map sort with System.Linq experiment.");
+                            spawn_balls();
+                            break;
+                        }
+
+                        case StateInformation.SortingImplementation.MapSortLinq: {
                             sorting_implementation = StateInformation.SortingImplementation.HeapSort;
                             current_sample_size = starting_sample_size;
                             Debug.Log("Started heap sort experiment.");
@@ -100,6 +108,10 @@ public class StateExperiment
             }
             case StateInformation.SortingImplementation.MapSort: {
                 state_information.sort_map_sort();
+                break;
+            }
+            case StateInformation.SortingImplementation.MapSortLinq: {
+                state_information.sort_map_sort_linq();
                 break;
             }
             case StateInformation.SortingImplementation.HeapSort: {
