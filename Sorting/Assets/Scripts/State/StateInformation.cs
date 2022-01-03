@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class StateInformation
 {
     public enum SortingImplementation {
         SelectionSort,
+        MapSort,
         HeapSort,
         QuickSort
     }
@@ -20,7 +22,7 @@ public class StateInformation
     }
 
     public void sort_selection_sort() {
-        for(int i = 0; i < balls.Count-1; i++) {
+        for(int i = 0; i < balls.Count; i++) {
             int lowest = i;
             for(int j = i+1; j < balls.Count; j++) {
                 if(balls[lowest].distance_from_circle() > balls[j].distance_from_circle()) {
@@ -65,6 +67,21 @@ public class StateInformation
             balls[i] = b;
             balls[largest] = a;
             heapify(n, largest);
+        }
+    }
+
+    public void sort_map_sort() {
+        SortedDictionary<(float, int), BallBehaviour> remaining = new SortedDictionary<(float, int), BallBehaviour>();
+        int index = 0;
+        foreach(BallBehaviour value in balls) {
+            remaining.Add((value.distance_from_circle(), index), value);
+            index++;
+        }
+
+        for(int i = 0; i < balls.Count; i++) {
+            var first = remaining.First();
+            balls[i] = first.Value;
+            remaining.Remove(first.Key);
         }
     }
 

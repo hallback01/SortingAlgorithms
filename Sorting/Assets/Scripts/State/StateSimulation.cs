@@ -42,6 +42,10 @@ public class StateSimulation
                 state_information.sort_selection_sort();
                 break;
             }
+            case StateInformation.SortingImplementation.MapSort: {
+                state_information.sort_map_sort();
+                break;
+            }
             case StateInformation.SortingImplementation.HeapSort: {
                 state_information.sort_heap_sort();
                 break;

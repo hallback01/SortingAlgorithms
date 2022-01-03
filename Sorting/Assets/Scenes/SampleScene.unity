@@ -244,7 +244,7 @@ MonoBehaviour:
     origin: {x: 0, y: 0}
     sorting_implementation: 1
     start_ball_amount: 2500
-    ball_divider: 0.001
+    ball_divider: 0.1
   state_experiment:
     ticks_per_samplesize: 60
     starting_sample_size: 1000

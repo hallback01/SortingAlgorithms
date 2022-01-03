@@ -48,12 +48,21 @@ public class StateExperiment
 
                     switch(sorting_implementation) {
                         case StateInformation.SortingImplementation.SelectionSort: {
+                            sorting_implementation = StateInformation.SortingImplementation.MapSort;
+                            current_sample_size = starting_sample_size;
+                            Debug.Log("Started map sort experiment.");
+                            spawn_balls();
+                            break;
+                        }
+
+                        case StateInformation.SortingImplementation.MapSort: {
                             sorting_implementation = StateInformation.SortingImplementation.HeapSort;
                             current_sample_size = starting_sample_size;
                             Debug.Log("Started heap sort experiment.");
                             spawn_balls();
                             break;
                         }
+
                         case StateInformation.SortingImplementation.HeapSort: {
                             sorting_implementation = StateInformation.SortingImplementation.QuickSort;
                             current_sample_size = starting_sample_size;
@@ -87,6 +96,10 @@ public class StateExperiment
         switch(sorting_implementation) {
             case StateInformation.SortingImplementation.SelectionSort: {
                 state_information.sort_selection_sort();
+                break;
+            }
+            case StateInformation.SortingImplementation.MapSort: {
+                state_information.sort_map_sort();
                 break;
             }
             case StateInformation.SortingImplementation.HeapSort: {
