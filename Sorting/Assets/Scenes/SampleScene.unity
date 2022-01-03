@@ -246,7 +246,7 @@ MonoBehaviour:
     start_ball_amount: 2500
     ball_divider: 0.1
   state_experiment:
-    ticks_per_samplesize: 60
+    ticks_per_samplesize: 1024
     starting_sample_size: 1000
     sample_size_delta: 100
     stop_sample_size: 2000
