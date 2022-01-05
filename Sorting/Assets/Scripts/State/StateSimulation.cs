@@ -12,10 +12,11 @@ public class StateSimulation
     public float speed;
     public Vector2 origin;
     public StateInformation.SortingImplementation sorting_implementation;
-    public int start_ball_amount;
+    public int ball_amount;
     [Range(0.001f, 1f)]
     public float ball_divider;
     float angle = 0;
+    float current_time = 0f;
 
     public void set_info(StateInformation state_info) {
         state_information = state_info;
@@ -31,7 +32,9 @@ public class StateSimulation
         state_information.sorting_controller.transform.position = origin + position;
 
         update_balls();
+        float now = Time.realtimeSinceStartup;
         sort_objects();
+        current_time = (Time.realtimeSinceStartup - now) * 1000.0f; //in milliseconds
         change_colors();
 
     }
@@ -61,9 +64,12 @@ public class StateSimulation
         }
     }
 
-    void create_balls_simulation() {
+    public void create_balls_simulation() {
+        for(int i = 0; i < state_information.balls.Count; i++) {
+            GameObject.Destroy(state_information.balls[i].gameObject);
+        }
         state_information.balls.Clear();
-        for(int i = 0; i < start_ball_amount; i++) {
+        for(int i = 0; i < ball_amount; i++) {
             GameObject obj = GameObject.Instantiate(state_information.ball_prefab, Vector2.zero, Quaternion.identity);
             BallBehaviour ball_behaviour = obj.GetComponent<BallBehaviour>();
             ball_behaviour.sorting_controller = state_information.sorting_controller;
@@ -81,5 +87,13 @@ public class StateSimulation
         for(int i = 0; i < state_information.balls.Count; i++) {
             state_information.balls[i].update_ball(origin, radius);
         }
+    }
+
+    public StateInformation.SortingImplementation get_sorting_algorithm() {
+        return sorting_implementation;
+    }
+
+    public float get_sorting_time() {
+        return current_time;
     }
 }

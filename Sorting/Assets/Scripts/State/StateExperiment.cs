@@ -16,6 +16,8 @@ public class StateExperiment
     int ticks = 0;
     int current_sample_size = 0;
 
+    float current_time = 0f;
+
     bool done = false;
     TimeMeasurment time_measurment;
 
@@ -95,6 +97,7 @@ public class StateExperiment
                 float now = Time.realtimeSinceStartup;
                 sort();
                 time_measurment.insert(sorting_implementation, current_sample_size, Time.realtimeSinceStartup - now);
+                current_time = (Time.realtimeSinceStartup - now) * 1000.0f; //in milliseconds
                 change_colors();
             }
         }
@@ -150,5 +153,13 @@ public class StateExperiment
         for(int i = 0; i < state_information.balls.Count * 0.1; i++) {
             state_information.balls[i].change_color();
         }
+    }
+
+    public StateInformation.SortingImplementation get_sorting_algorithm() {
+        return sorting_implementation;
+    }
+
+    public float get_sorting_time() {
+        return current_time;
     }
 }
