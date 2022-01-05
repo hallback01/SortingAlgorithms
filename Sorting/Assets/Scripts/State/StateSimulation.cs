@@ -61,6 +61,10 @@ public class StateSimulation
                 state_information.sort_quick_sort();
                 break;
             }
+            case StateInformation.SortingImplementation.QuickSortMedianPivot: {
+                state_information.sort_quick_sort_median_pivot();
+                break;
+            }
         }
     }
 

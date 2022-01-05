@@ -10,7 +10,8 @@ public class StateInformation
         MapSort,
         MapSortLinq,
         HeapSort,
-        QuickSort
+        QuickSort,
+        QuickSortMedianPivot
     }
     public List<BallBehaviour> balls;
     public GameObject ball_prefab;
@@ -22,6 +23,13 @@ public class StateInformation
         sorting_controller = srt_cntrl;
     }
 
+    void swap_by_index(int a, int b) {
+        BallBehaviour ball_a = balls[a];
+        BallBehaviour ball_b = balls[b];
+        balls[a] = ball_b;
+        balls[b] = ball_a;
+    }
+
     public void sort_selection_sort() {
         for(int i = 0; i < balls.Count; i++) {
             int lowest = i;
@@ -31,10 +39,7 @@ public class StateInformation
                 }
             }
             if(lowest != i) {
-                BallBehaviour a = balls[i];
-                BallBehaviour b = balls[lowest];
-                balls[lowest] = a;
-                balls[i] = b;
+                swap_by_index(lowest, i);
             }
         }
     }
@@ -44,10 +49,7 @@ public class StateInformation
             heapify(balls.Count, i);
         }
         for(int i = balls.Count - 1; i >= 0; i--) {
-            BallBehaviour a = balls[i];
-            BallBehaviour b = balls[0];
-            balls[0] = a;
-            balls[i] = b;
+            swap_by_index(i, 0);
             heapify(i, 0);
         }
     }
@@ -63,10 +65,7 @@ public class StateInformation
             largest = right;
         }
         if(largest != i) {
-            BallBehaviour a = balls[i];
-            BallBehaviour b = balls[largest];
-            balls[i] = b;
-            balls[largest] = a;
+            swap_by_index(largest, i);
             heapify(n, largest);
         }
     }
@@ -98,6 +97,100 @@ public class StateInformation
     }
 
     public void sort_quick_sort() {
+        quick_sort(0, balls.Count-1);
+    }
 
+    public void sort_quick_sort_median_pivot() {
+        quick_sort_median(0, balls.Count-1);
+    }
+
+    void quick_sort(int start, int end) {
+        if(end > start) {
+            int divide_index = quick_sort_divide(start, end);
+            quick_sort(start, divide_index-1);
+            quick_sort(divide_index+1, end);
+        }
+    }
+
+    int quick_sort_divide(int start, int end) {
+
+        int random = Random.Range(start, end+1);
+
+        int pivot_index = random;
+        float pivot = balls[pivot_index].distance_from_circle();
+
+        swap_by_index(pivot_index, end);
+
+        int i = start;
+
+        for(int j = start; j < end; j++) {
+            if(balls[j].distance_from_circle() < pivot) {
+                swap_by_index(i ,j);
+                i++;
+            }
+        }
+
+        swap_by_index(i, end);
+        return i;
+    }
+
+    void quick_sort_median(int start, int end) {
+        if(end > start) {
+            int divide_index = quick_sort_divide_median(start, end);
+            quick_sort_median(start, divide_index-1);
+            quick_sort_median(divide_index+1, end);
+        }
+    }
+
+    int quick_sort_divide_median(int start, int end) {
+
+        int random = choose_pivot(start, end);
+
+        int pivot_index = random;
+        float pivot = balls[pivot_index].distance_from_circle();
+
+        swap_by_index(pivot_index, end);
+
+        int i = start;
+
+        for(int j = start; j < end; j++) {
+            if(balls[j].distance_from_circle() < pivot) {
+                swap_by_index(i ,j);
+                i++;
+            }
+        }
+
+        swap_by_index(i, end);
+        return i;
+    }
+
+    int choose_pivot(int start, int end) {
+
+        int a = start;
+        int b = end;
+        int c = (start + end) / 2;
+
+        float av = balls[a].distance_from_circle();
+        float bv = balls[b].distance_from_circle();
+        float cv = balls[c].distance_from_circle();
+
+        if(av > bv) {
+
+            if(av < cv) {
+                return a;
+            } else if(bv > cv) {
+                return b;
+            } else {
+                return c;
+            }
+        } else {
+            if(av > cv) {
+                return a;
+            } else if(bv < cv) {
+                return b;
+            } else {
+                return c;
+            }
+        }
     }
 }

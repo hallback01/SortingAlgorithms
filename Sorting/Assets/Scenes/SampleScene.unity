@@ -487,11 +487,11 @@ MonoBehaviour:
     radius: 3
     speed: 3.14
     origin: {x: 0, y: 0}
-    sorting_implementation: 1
-    ball_amount: 1024
+    sorting_implementation: 5
+    ball_amount: 16384
     ball_divider: 0.1
   state_experiment:
-    ticks_per_samplesize: 256
+    ticks_per_samplesize: 1024
     starting_sample_size: 1000
     sample_size_delta: 100
     stop_sample_size: 2000

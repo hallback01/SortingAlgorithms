@@ -81,6 +81,13 @@ public class StateExperiment
                             break;
                         }
                         case StateInformation.SortingImplementation.QuickSort: {
+                            sorting_implementation = StateInformation.SortingImplementation.QuickSortMedianPivot;
+                            current_sample_size = starting_sample_size;
+                            Debug.Log("Started quick sort with median pivot experiment.");
+                            spawn_balls();
+                            break;
+                        }
+                        case StateInformation.SortingImplementation.QuickSortMedianPivot: {
                             done = true;
                             Debug.Log("Done! Saving results to file.");
                             time_measurment.save(csv_save_location);
@@ -123,6 +130,10 @@ public class StateExperiment
             }
             case StateInformation.SortingImplementation.QuickSort: {
                 state_information.sort_quick_sort();
+                break;
+            }
+            case StateInformation.SortingImplementation.QuickSortMedianPivot: {
+                state_information.sort_quick_sort_median_pivot();
                 break;
             }
         }
