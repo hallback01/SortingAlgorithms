@@ -1,2 +1,2 @@
 # SortingAlgorithms
-Sorting algorithms, school project.
+Sorting algorithm experimentation in unity.
