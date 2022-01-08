@@ -2,7 +2,7 @@
 Sorting algorithm experimentation in unity.
 
 
-This is an assignment for school, where I try and compare the speed of different sorting algorithms based on the size of a list of balls.
+This is an assignment for school, where I try and compare the speed of different sorting algorithms based on the size of a list of balls where the sorting comparison is made based on the distance of a known point(in this case, this point is moving in a circular motion around all the balls. Which means the balls are all contained inside a circle).
 There are two parts, a simulation part and an experimentation part. In the simulation part, a sorting algorithm can be chosen with a chosen amount of balls.
 The experiment part goes through every sorting algorithm while saving the average time it took to sort the list(Because a single iteration is ran over multiple ticks, the time collected is always the average time per tick). It starts sorting a list with a start ball amount, then every iteration it increases the ball amount depending on a delta variable. After the amount of balls is equal to the chosen end ball amount. Start iterating over again, but with the next sorting algorithm until there are no algorithm left. Then, it dumps the data collected into a .csv file.
 
